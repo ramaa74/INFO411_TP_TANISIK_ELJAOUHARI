@@ -28,7 +28,8 @@ if (!$result) {
 <body>
 
     <h1>Votez pour le meilleur joueur du monde ! 🌍⚽</h1>
-
+    <!-- Champ de recherche -->
+    <input type="text" id="searchInput" placeholder="Rechercher un joueur..." style="margin: 20px auto; padding: 10px; width: 80%; max-width: 400px; display: block;">
     <form action="vote.php" method="POST">
         <div class="players-container">
             <?php
@@ -43,6 +44,14 @@ if (!$result) {
             ?>
         </div>
     </form>
-
+<script>
+document.getElementById('searchInput').addEventListener('input', function () {
+    const search = this.value.toLowerCase();
+    document.querySelectorAll('.player-card').forEach(card => {
+        const name = card.querySelector('strong').textContent.toLowerCase();
+        card.style.display = name.includes(search) ? 'block' : 'none';
+    });
+});
+</script>
 </body>
 </html>
