@@ -160,4 +160,29 @@ a:hover {
     background: linear-gradient(90deg, #0040a0, #002080);
     transform: scale(1.1);
     box-shadow: 0 0 20px rgba(0, 50, 150, 1);
+
+    @media (max-width: 768px) {
+        .main-container {
+            padding: 15px;
+        }
+    
+        .players-container {
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+        }
+    
+        h1 {
+            font-size: 22px;
+        }
+    
+        table.resultats-table th, 
+        table.resultats-table td {
+            font-size: 14px;
+            padding: 10px;
+        }
+    
+        button, a {
+            font-size: 14px;
+            padding: 8px 12px;
+        }
+    }
 }
