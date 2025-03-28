@@ -1,0 +1,163 @@
+/* 📌 Importer une police élégante et moderne */
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@400;600;700&display=swap');
+
+/* 📌 Style général */
+body {
+    font-family: 'Oswald', sans-serif;
+    background: #0a0a0a;
+    color: #e0e0e0;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+}
+
+/* 📌 Conteneur principal */
+.main-container {
+    width: 90%;
+    max-width: 1100px;
+    background: rgba(20, 20, 35, 0.95);
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 5px 20px rgba(0, 50, 150, 0.5);
+    text-align: center;
+    border: 2px solid rgba(0, 50, 150, 0.8);
+}
+
+/* 📌 Titre principal */
+h1 {
+    font-size: 30px;
+    font-weight: 700;
+    color: #007bff;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    text-shadow: 0 0 10px rgba(0, 50, 150, 0.8);
+}
+
+/* 📌 Conteneur des joueurs */
+.players-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 20px;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+/* 📌 Carte de chaque joueur */
+.player-card {
+    background: #101d40;
+    padding: 20px;
+    border-radius: 8px;
+    text-align: center;
+    box-shadow: 0 4px 10px rgba(0, 50, 150, 0.5);
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    border: 2px solid rgba(0, 50, 150, 0.8);
+}
+
+.player-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 15px rgba(0, 50, 150, 0.7);
+}
+
+/* 📌 Image des joueurs */
+.player-card img {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid #007bff;
+}
+
+/* 📌 Nom du joueur */
+.player-card strong {
+    display: block;
+    font-size: 18px;
+    font-weight: 600;
+    margin-top: 10px;
+    color: #00aaff;
+}
+
+/* 📌 Équipe du joueur */
+.player-card span {
+    font-size: 14px;
+    color: #bbbbbb;
+}
+
+/* 📌 Bouton de vote avec effet néon */
+button {
+    background: linear-gradient(90deg, #007bff, #0040a0);
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 600;
+    transition: background 0.3s ease-in-out, transform 0.2s ease-in-out;
+    margin-top: 10px;
+    text-transform: uppercase;
+    box-shadow: 0 0 10px rgba(0, 50, 150, 0.7);
+}
+
+button:hover {
+    background: linear-gradient(90deg, #0040a0, #002080);
+    transform: scale(1.1);
+    box-shadow: 0 0 20px rgba(0, 50, 150, 1);
+}
+
+/* 📌 Tableau des résultats - Style moderne */
+.resultats-table {
+    width: 100%;
+    margin-top: 20px;
+    border-collapse: collapse;
+    text-align: center;
+    background: #101d40;
+    border-radius: 8px;
+    overflow: hidden;
+    border: 2px solid #007bff;
+    box-shadow: 0 4px 15px rgba(0, 50, 150, 0.7);
+}
+
+/* 📌 Style des titres des colonnes */
+.resultats-table th {
+    background: #007bff;
+    color: white;
+    padding: 15px;
+    font-size: 18px;
+}
+
+/* 📌 Style des cellules */
+.resultats-table td {
+    padding: 12px;
+    font-size: 16px;
+    color: #e0e0e0;
+}
+
+/* 📌 Alternance des couleurs des lignes */
+.resultats-table tr:nth-child(even) {
+    background: #162a50;
+}
+
+/* 📌 Bouton retour avec effet lumineux */
+a {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 10px 18px;
+    background: linear-gradient(90deg, #007bff, #0040a0);
+    color: white;
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: 600;
+    border-radius: 5px;
+    transition: background 0.3s ease-in-out, transform 0.2s ease-in-out;
+    box-shadow: 0 0 10px rgba(0, 50, 150, 0.7);
+}
+
+a:hover {
+    background: linear-gradient(90deg, #0040a0, #002080);
+    transform: scale(1.1);
+    box-shadow: 0 0 20px rgba(0, 50, 150, 1);
+}
