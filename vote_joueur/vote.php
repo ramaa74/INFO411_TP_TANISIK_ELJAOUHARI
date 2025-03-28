@@ -1,37 +1,28 @@
 <?php
-require_once('include/connexion.php'); // Connexion à la base
+session_start();
+require_once('include/connexion.php');
 
-// Vérifier si le formulaire a été soumis et si un joueur a été sélectionné
-if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['joueur_id'])) {
-    $joueur_id = intval($_POST['joueur_id']); // Sécuriser l'ID du joueur
-    $ip_votant = $_SERVER['REMOTE_ADDR']; // Récupérer l'IP de l'utilisateur pour éviter les votes multiples
-
-    // Vérifier si cet utilisateur a déjà voté
-    $check_vote = $CONNEXION->prepare("SELECT id FROM votes WHERE ip_votant = ?");
-    $check_vote->bind_param("s", $ip_votant);
-    $check_vote->execute();
-    $check_vote->store_result();
-
-    if ($check_vote->num_rows > 0) {
-        // L'utilisateur a déjà voté, afficher un message
-        echo "<h2>❌ Vous avez déjà voté !</h2>";
-    } else {
-        // Enregistrer le vote dans la base de données
-        $stmt = $CONNEXION->prepare("INSERT INTO votes (joueur_id, ip_votant) VALUES (?, ?)");
-        $stmt->bind_param("is", $joueur_id, $ip_votant);
-
-        if ($stmt->execute()) {
-            echo "<h2>✅ Vote enregistré avec succès !</h2>";
-        } else {
-            echo "<h2>❌ Erreur lors du vote.</h2>";
-        }
-        $stmt->close();
-    }
-
-    $check_vote->close();
-} else {
-    echo "<h2>❌ Aucune sélection de joueur.</h2>";
+// Vérifie qu'un joueur a été sélectionné
+if (!isset($_POST['joueur_id'])) {
+    echo "❌ Aucun joueur sélectionné.";
+    exit();
 }
-?>
 
-<a href="index.php">Retour à l'accueil</a>
+$joueur_id = intval($_POST['joueur_id']); // Sécurisation de l'ID joueur
+$ip = $_SERVER['REMOTE_ADDR'];            // Récupère l'adresse IP du votant
+$utilisateur_id = isset($_SESSION['user_id']) ? $_SESSION['user_id'] : null; // User connecté ou non
+
+// Requête préparée pour insérer le vote
+$requete = $CONNEXION->prepare("INSERT INTO votes (joueur_id, ip_votant, date_vote, utilisateur_id) VALUES (?, ?, NOW(), ?)");
+$requete->bind_param("isi", $joueur_id, $ip, $utilisateur_id);
+
+if ($requete->execute()) {
+    echo "✅ Merci pour votre vote !";
+    header("Location: resultats.php");
+    exit();
+} else {
+    echo "❌ Une erreur est survenue lors du vote.";
+}
+
+$requete->close();
+?>
